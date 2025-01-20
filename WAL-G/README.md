@@ -50,11 +50,20 @@ boss@astra8:~/go/src/github.com/wal-g/wal-g$ sudo cp main/pg/wal-g /usr/local/bi
 }
 ```
 
+// - метод компрессии ( brotli, lz4, zstd, zlib )<br>
+// - количество "дельт"  (инкрементальных архивов) между полными ( full ) архивами<br>
+// - указывается папка назначения<br>
+// - количество потоков записи к диску при выгрузке<br>
+// - папка с данными<br>
+// - порт сервера<br>
+// - сервер PostgreSQL ( в данном случае локальныый )<br>
+
+
 ### Создание бэкапов
 
 ```
 -- создадим первый бэкап - полный
-postgres@astra8:~$ wal-g backup-push /var/lib/pgpro/std-17/data/
+<b>postgres@astra8:~$ wal-g backup-push /var/lib/pgpro/std-17/data/</b>
 INFO: 2024/12/04 14:55:26.265892 Backup will be pushed to storage: default
 INFO: 2024/12/04 14:55:26.280904 Couldn't find previous backup. Doing full backup.
 INFO: 2024/12/04 14:55:26.288795 Calling pg_start_backup()
@@ -193,9 +202,9 @@ boss@astra8:~$ sudo chown postgres: /var/log/postgresql
 -- добавим в файл postgresql.conf следующие строки
 wal_level=replica
 archive_mode=on
-archive_command='/usr/local/bin/wal-g wal-push \"%p\" >> /var/log/postgresql/archive_command.log 2>&1' 
+archive_command='/usr/local/bin/wal-g wal-push "%p" >> /var/log/postgresql/archive_command.log 2>&1' 
 archive_timeout=60
-restore_command='/usr/local/bin/wal-g wal-fetch \"%f\" \"%p\" >> /var/log/postgresql/restore_command.log 2>&1'
+restore_command='/usr/local/bin/wal-g wal-fetch "%f" "%p" >> /var/log/postgresql/restore_command.log 2>&1'
 
 -- так как изменили archive_mode - перезагружаем службу 
 ```
