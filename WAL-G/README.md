@@ -349,3 +349,18 @@ postgres@astra8:~$ wal-g wal-show --detailed-json | jq .
   }
 ]
 ``` 
+
+### Очистка от старых бэкапов
+
+- удаление старых бэкапов (старше 30 дней) и чтобы был полный в наличии<br> 
+  (35 дней назад полный останется и дельты к нему, если следующий полный - 29 дней назад)
+
+```
+wal-g delete before FIND_FULL \$(date -d '-30 days' '+%FT%TZ') --confirm >> /var/log/postgresql/walg_delete.log 2>&1
+```
+
+- удаление старых с сохранением 4-х полных и все дельты к ним
+
+```
+wal-g delete retain FULL 4  --confirm >> /var/log/posrgresql/walg_delete.log 2>&1
+```
