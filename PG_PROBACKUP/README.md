@@ -95,6 +95,7 @@ $\textsf{\color{blue}- если контрольные суммы не вклю�
 sudo systemctl stop postgrespro-1c-16
 sudo su - postgres
 pg_checksums -e -D /var/lib/pgpro/1c-16/data
+exit
 sudo systemctl start postgrespro-1c-16
 ```
 
