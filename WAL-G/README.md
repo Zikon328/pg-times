@@ -16,8 +16,8 @@ boss@astra8:~$ git clone https://github.com/wal-g/wal-g $(go env GOPATH)/src/git
 boss@astra8:~/wal-g-3.0.3$ sudo apt update
 boss@astra8:~/wal-g-3.0.3$ sudo apt install golang-go g++
 ...
--- оказался golang 1.21
--- но нужен golang версии 1.22 - перезапишем поверх
+  -- оказался golang 1.21
+  -- но нужен golang версии 1.22 - перезапишем поверх
 boss@astra8:~$ wget https://go.dev/dl/go1.22.5.linux-amd64.tar.gz
 boss@astra8:~$ sudo tar -xvf go1.22.5.linux-amd64.tar.gz -C /usr/local
 ...
@@ -27,27 +27,27 @@ boss@astra8:~/go/src/github.com/wal-g/wal-g$ export USE_LIBSODIUM=1
 boss@astra8:~/go/src/github.com/wal-g/wal-g$ export USE_LZO=1
 boss@astra8:~/go/src/github.com/wal-g/wal-g$ make deps
 boss@astra8:~/go/src/github.com/wal-g/wal-g$ make pg_build
--- собрали для postgresql - и проверим версию
+  -- собрали для postgresql - и проверим версию
 boss@astra8:~/go/src/github.com/wal-g/wal-g$ main/pg/wal-g --version
 wal-g version   e42ffe43        2024.12.04_09:31:40     PostgreSQL
--- скопируем в локальный bin каталог
+  -- скопируем в локальный bin каталог
 boss@astra8:~/go/src/github.com/wal-g/wal-g$ sudo cp main/pg/wal-g /usr/local/bin/wal-g
 ```
 
 ### Настройка программы WAL-G
 
-    --создадим файл ~/.walg.json  у пользователя postgres с содержимым--
-    {
-        "WALG_COMPRESSION_METHOD": "brotli",
-        "WALG_DELTA_MAX_STEPS": "5",
-        "WALG_FILE_PREFIX": "/var/lib/postgresql/backups/walg",
-        "WALG_UPLOAD_DISK_CONCURRENCY": "4",
-        "PGDATA": "/var/lib/pgpro/std-17/data",
-        "PGPORT": "5433",
-        "PGHOST": "/tmp"
-    }
-
-
+$\textsf{\color{blue}--создадим файл ~/.walg.json  у пользователя postgres с содержимым}$
+```
+{
+    "WALG_COMPRESSION_METHOD": "brotli",
+    "WALG_DELTA_MAX_STEPS": "5",
+    "WALG_FILE_PREFIX": "/var/lib/postgresql/backups/walg",
+    "WALG_UPLOAD_DISK_CONCURRENCY": "4",
+    "PGDATA": "/var/lib/pgpro/std-17/data",
+    "PGPORT": "5433",
+    "PGHOST": "/tmp"
+}
+```
 // - метод компрессии ( brotli, lz4, zstd, zlib )<br>
 // - количество "дельт"  (инкрементальных архивов) между полными ( full ) архивами<br>
 // - указывается папка назначения<br>
