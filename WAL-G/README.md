@@ -214,7 +214,7 @@ archive_timeout=60
 restore_command='/usr/local/bin/wal-g wal-fetch "%f" "%p" >> /var/log/postgresql/restore_command.log 2>&1'
 ```
 
-$\textsf{\color{blue}-- так как изменили archive_mode - перезагружаем службу}$
+$\textsf{\color{blue}-- так как изменили archive\_mode - перезагружаем службу}$
 ``` 
 boss@astra8:~$ sudo systemctl restart postgrespro-std-17
 ```
