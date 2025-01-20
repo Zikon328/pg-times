@@ -59,7 +59,7 @@ boss@astra8:~/go/src/github.com/wal-g/wal-g$ sudo cp main/pg/wal-g /usr/local/bi
 
 ### Создание бэкапов
 
-$\texttt{\color{blue}-- создадим первый бэкап - полный}$
+$\tt{\color{blue}-- создадим первый бэкап - полный}$
 ```
 -- создадим первый бэкап - полный
 postgres@astra8:~$ wal-g backup-push /var/lib/pgpro/std-17/data/
