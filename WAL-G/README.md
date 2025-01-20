@@ -59,8 +59,8 @@ boss@astra8:~/go/src/github.com/wal-g/wal-g$ sudo cp main/pg/wal-g /usr/local/bi
 
 ### Создание бэкапов
 
-```shell
--- создадим первый бэкап - полный
+```
+<strong>-- создадим первый бэкап - полный</strong>
 postgres@astra8:~$ wal-g backup-push /var/lib/pgpro/std-17/data/
 INFO: 2024/12/04 14:55:26.265892 Backup will be pushed to storage: default
 INFO: 2024/12/04 14:55:26.280904 Couldn't find previous backup. Doing full backup.
