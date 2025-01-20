@@ -59,9 +59,8 @@ boss@astra8:~/go/src/github.com/wal-g/wal-g$ sudo cp main/pg/wal-g /usr/local/bi
 
 ### Создание бэкапов
 
-$\tt{\color{blue}-- создадим первый бэкап - полный}$
+$\textsf{\color{blue}-- создадим первый бэкап - полный}$
 ```
--- создадим первый бэкап - полный
 postgres@astra8:~$ wal-g backup-push /var/lib/pgpro/std-17/data/
 INFO: 2024/12/04 14:55:26.265892 Backup will be pushed to storage: default
 INFO: 2024/12/04 14:55:26.280904 Couldn't find previous backup. Doing full backup.
@@ -99,8 +98,10 @@ postgres@astra8:~$ wal-g backup-list
 INFO: 2024/12/04 14:57:48.387876 List backups from storages: [default]
 backup_name                   modified                  wal_file_name            storage_name
 base_000000010000000200000095 2024-12-04T14:56:44+05:00 000000010000000200000095 default
+```
 
--- создадим ещё один бэкап - будет дельта
+$\textsf{\color{blue}-- создадим ещё один бэкап - будет дельта}$
+```
 postgres@astra8:~$ wal-g backup-push /var/lib/pgpro/std-17/data/
 INFO: 2024/12/04 15:06:10.793924 Backup will be pushed to storage: default
 INFO: 2024/12/04 15:06:10.805001 LATEST backup is: 'base_000000010000000200000095'
@@ -129,20 +130,23 @@ INFO: 2024/12/04 15:06:10.913679 tablespace_map
 INFO: 2024/12/04 15:06:10.914474 Finished writing part 6.
 INFO: 2024/12/04 15:06:10.915944 Querying pg_database
 INFO: 2024/12/04 15:06:10.976208 Wrote backup with name base_00000001000000020000009A_D_000000010000000200000095 to storage default
+```
 
--- список бэкапов
+$\textsf{\color{blue}-- список бэкапов}$
+```
 postgres@astra8:~$ wal-g backup-list
 INFO: 2024/12/04 15:06:18.245364 List backups from storages: [default]
 backup_name                                              modified                  wal_file_name            storage_name
 base_000000010000000200000095                            2024-12-04T14:56:44+05:00 000000010000000200000095 default
 base_00000001000000020000009A_D_000000010000000200000095 2024-12-04T15:06:10+05:00 00000001000000020000009A default
+```
 
--- удаление всех бэкапов
+$\textsf{\color{blue}-- удаление всех бэкапов}$
+```
 postgres@astra8:~$ wal-g delete everything FORCE --confirm
 ```
 
-- создадим ещё полный бэкап и посмотрим данные по архиву
-
+$\textsf{\color{blue}- создадим ещё полный бэкап и посмотрим данные по архиву}$
 ```
 postgres@astra8:~$ wal-g backup-push /var/lib/pgpro/std-17/data/
 ...
@@ -150,8 +154,10 @@ postgres@astra8:~$ wal-g backup-list
 INFO: 2024/12/04 15:12:23.742956 List backups from storages: [default]
 backup_name                   modified                  wal_file_name            storage_name
 base_00000001000000020000009C 2024-12-04T15:10:26+05:00 00000001000000020000009C default
+```
 
--- подробный список 
+$\textsf{\color{blue}-- подробный список}$ 
+```
 postgres@astra8:~$ wal-g backup-list --detail
 INFO: 2024/12/04 15:12:49.793022 List backups from storages: [default]
 backup_name                   modified                  wal_file_name            storage_name start_time           finish_time          hostnamedata_dir                   pg_version start_lsn  finish_lsn is_permanent
@@ -165,8 +171,7 @@ INFO: 2024/12/04 15:13:17.050292 List backups from storages: [default]
 +---+-------------------------------+-----------------------------------+--------------------------+--------------+-----------------------------------+-----------------------------------+----------+----------------------------+------------+------------+------------+-----------+
 ```
 
-- так более читаемая информация
-
+$\textsf{\color{blue}- так более читаемая информация}$
 ```
 postgres@astra8:~$ wal-g backup-list --detail --json | jq .
 INFO: 2024/12/04 15:13:51.941365 List backups from storages: [default]
@@ -192,25 +197,29 @@ INFO: 2024/12/04 15:13:51.941365 List backups from storages: [default]
 ]
 ```
 
-- Настраиваем архивацию WAL с помощью WAL-G
+### Настраиваем архивацию WAL с помощью WAL-G
 
+$\textsf{\color{blue}- создаём каталог для логов}$
 ```
 boss@astra8:~$ sudo mkdir /var/log/postgresql
 boss@astra8:~$ sudo chown postgres: /var/log/postgresql
+```
 
--- добавим в файл postgresql.conf следующие строки
+$\textsf{\color{blue}-- добавим в файл postgresql.conf следующие строки}$
+```
 wal_level=replica
 archive_mode=on
 archive_command='/usr/local/bin/wal-g wal-push "%p" >> /var/log/postgresql/archive_command.log 2>&1' 
 archive_timeout=60
 restore_command='/usr/local/bin/wal-g wal-fetch "%f" "%p" >> /var/log/postgresql/restore_command.log 2>&1'
+```
 
--- так как изменили archive_mode - перезагружаем службу 
+$\textsf{\color{blue}-- так как изменили archive_mode - перезагружаем службу}$
+``` 
 boss@astra8:~$ sudo systemctl restart postgrespro-std-17
 ```
 
-- Посмотреть состояние WAL архива
-
+$\textsf{\color{blue}- Посмотреть состояние WAL архива}$
 ```
 postgres@astra8:~$ wal-g wal-show
 +-----+------------+-----------------+--------------------------+--------------------------+---------------+----------------+--------+---------------+
@@ -236,8 +245,7 @@ postgres@astra8:~$ wal-g wal-show --detailed-json | jq .
 
 ```
 
-- Сделаем следующий бэкап и посмотрим состояние
-
+$\textsf{\color{blue}- Сделаем следующий бэкап и посмотрим состояние}$
 ```
 postgres@astra8:~$ wal-g backup-push /var/lib/pgpro/std-17/data/
 INFO: 2025/01/19 20:57:43.705164 Backup will be pushed to storage: default
