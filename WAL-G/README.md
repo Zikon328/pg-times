@@ -59,7 +59,7 @@ boss@astra8:~/go/src/github.com/wal-g/wal-g$ sudo cp main/pg/wal-g /usr/local/bi
 
 ### Создание бэкапов
 
-$\textsf{\color{blue}-- создадим первый бэкап - полный}$
+$\textsf{\color{blue}\tt-- создадим первый бэкап - полный}$
 ```
 postgres@astra8:~$ wal-g backup-push /var/lib/pgpro/std-17/data/
 INFO: 2024/12/04 14:55:26.265892 Backup will be pushed to storage: default
@@ -214,12 +214,12 @@ archive_timeout=60
 restore_command='/usr/local/bin/wal-g wal-fetch "%f" "%p" >> /var/log/postgresql/restore_command.log 2>&1'
 ```
 
-$\color{blue}{-- так как изменили archive\_mode - перезагружаем службу}$
+$\text{\color{blue}\tt-- так как изменили archive-mode - перезагружаем службу}$
 ``` 
 boss@astra8:~$ sudo systemctl restart postgrespro-std-17
 ```
 
-$\textsf{\color{blue}- Посмотреть состояние WAL архива}$
+$\textsf{\color{blue}-- Посмотреть состояние WAL архива}$
 ```
 postgres@astra8:~$ wal-g wal-show
 +-----+------------+-----------------+--------------------------+--------------------------+---------------+----------------+--------+---------------+
