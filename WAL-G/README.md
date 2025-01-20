@@ -36,19 +36,17 @@ boss@astra8:~/go/src/github.com/wal-g/wal-g$ sudo cp main/pg/wal-g /usr/local/bi
 
 ### Настройка программы WAL-G
 
-```
--- создадим файл ~/.walg.json  у пользователя postgres с содержимым
+    --создадим файл ~/.walg.json  у пользователя postgres с содержимым--
+    {
+        "WALG_COMPRESSION_METHOD": "brotli",
+        "WALG_DELTA_MAX_STEPS": "5",
+        "WALG_FILE_PREFIX": "/var/lib/postgresql/backups/walg",
+        "WALG_UPLOAD_DISK_CONCURRENCY": "4",
+        "PGDATA": "/var/lib/pgpro/std-17/data",
+        "PGPORT": "5433",
+        "PGHOST": "/tmp"
+    }
 
-{
-    "WALG_COMPRESSION_METHOD": "brotli",
-    "WALG_DELTA_MAX_STEPS": "5",
-    "WALG_FILE_PREFIX": "/var/lib/postgresql/backups/walg",
-    "WALG_UPLOAD_DISK_CONCURRENCY": "4",
-    "PGDATA": "/var/lib/pgpro/std-17/data",
-    "PGPORT": "5433",
-    "PGHOST": "/tmp"
-}
-```
 
 // - метод компрессии ( brotli, lz4, zstd, zlib )<br>
 // - количество "дельт"  (инкрементальных архивов) между полными ( full ) архивами<br>
@@ -63,7 +61,7 @@ boss@astra8:~/go/src/github.com/wal-g/wal-g$ sudo cp main/pg/wal-g /usr/local/bi
 
 ```
 -- создадим первый бэкап - полный
-<b>postgres@astra8:~$ wal-g backup-push /var/lib/pgpro/std-17/data/</b>
+postgres@astra8:~$ wal-g backup-push /var/lib/pgpro/std-17/data/
 INFO: 2024/12/04 14:55:26.265892 Backup will be pushed to storage: default
 INFO: 2024/12/04 14:55:26.280904 Couldn't find previous backup. Doing full backup.
 INFO: 2024/12/04 14:55:26.288795 Calling pg_start_backup()
