@@ -329,3 +329,9 @@ Table: keys: [_start, _stop, _field, _measurement, code, crypto, description, sy
 2025-01-01T08:00:00.000000000Z  2025-01-10T20:00:01.000000000Z                   price                coindesk                     USD                 bitcoin    United States Dollar                   &#36;  2025-01-09T02:09:08.000000000Z                    94951.6729
 2025-01-01T08:00:00.000000000Z  2025-01-10T20:00:01.000000000Z                   price                coindesk                     USD                 bitcoin    United States Dollar                   &#36;  2025-01-10T01:55:07.000000000Z                     93890.043
 ```
+
+- пример в браузере 
+- диапазон времени 30 дней надо установить
+- а то ничего не выдавал
+
+![DataExplorer](./Images/lesson1.jpg)
