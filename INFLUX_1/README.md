@@ -297,6 +297,8 @@ boss@ubutest:~$ ./influx config create --config-name MY_CONFIG \
 --token = ICEmDRlB94HhXZmur02hlxEPTe1QCIOE7_j0V-ivdwAokYGs132qpIpDqKkGQtuTZ4vgwnEP3lJe-8EEfaS6lw== \
 --active
 ```
+// параметры клиента сохраняются в файле  **~/.influxdbv2/configs**
+
 
 - создаём bucket и заполняем данным из CSV
 
