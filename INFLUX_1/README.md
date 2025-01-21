@@ -334,4 +334,4 @@ Table: keys: [_start, _stop, _field, _measurement, code, crypto, description, sy
 - диапазон времени 30 дней надо установить
 - а то ничего не выдавал
 
-![DataExplorer](./Images/lesson1.jpg)
+![DataExplorer](./Images/lesson1-2.jpg)
