@@ -67,7 +67,8 @@ Error: failed to setup instance: 400 Bad Request: passwords must be between 8 an
 
 http://192.168.1.244:8086
 
-вводим логин и пароль
+вводим логин и пароль - и веб-клиент открылся
+
 
 
 ###  Откоываем вторую сессию терминала
