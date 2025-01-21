@@ -73,6 +73,7 @@ http://192.168.1.244:8086
 
 ###  Откоываем вторую сессию терминала
 
+- контейнер в работе
 ```
 boss@ubutest:~$ docker ps
 CONTAINER ID   IMAGE        COMMAND                  CREATED          STATUS         PORTS                                       NAMES
