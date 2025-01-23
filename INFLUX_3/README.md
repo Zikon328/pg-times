@@ -246,14 +246,14 @@ from(bucket: "test_0301")
 
 ```
 0	Cabbages    33.216874648993     Belgium
-1	Cabbages    25.8573522525773    Denmark
+1	Cabbages    25.857352252577     Denmark
 2	Cabbages    24.835896009323     Greece
-3	Carrots	    50.2035378427913    Belgium
+3	Carrots	    50.203537842791     Belgium
 4	Carrots	    42.986274284878	    Denmark
 5	Carrots	    66.307965586532	    Greece
-6	Potatoes    52.9955993204539    Belgium
-7	Potatoes    44.1453748870842    Denmark
-8	Potatoes    63.0427659250112    Greece
+6	Potatoes    52.995599320453     Belgium
+7	Potatoes    44.145374887084     Denmark
+8	Potatoes    63.042765925011     Greece
 ```
 
 - тоже только минимальная цена, выводит и день когда была
@@ -268,15 +268,15 @@ from(bucket: "test_0301")
 ```  
 
 ```
-0	Europe	Cabbages    27.0238252422031	2024-07-31T01:00:00.000Z	Belgium
-1	Europe	Carrots	    31.5821026643587	2024-07-01T01:00:00.000Z	Belgium
-2	Europe	Potatoes    32.0854782486695	2024-07-01T01:00:00.000Z	Belgium
-3	Europe	Cabbages    17.7886406390932	2024-07-08T01:00:00.000Z	Denmark
-4	Europe	Carrots	    35.6959979886641	2024-07-29T01:00:00.000Z	Denmark
-5	Europe	Potatoes    36.9289295396171	2024-07-21T01:00:00.000Z	Denmark
-6	Europe	Cabbages    23.5638476476477	2024-07-13T01:00:00.000Z	Greece
-7	Europe	Carrots	    55.1118614656788	2024-07-05T01:00:00.000Z	Greece
-8	Europe	Potatoes    55.6819793654006	2024-07-09T01:00:00.000Z	Greece
+0	Europe	Cabbages    27.0238252422031	2024-07-31T01:00:00.000Z    Belgium
+1	Europe	Carrots	    31.5821026643587	2024-07-01T01:00:00.000Z    Belgium
+2	Europe	Potatoes    32.0854782486695	2024-07-01T01:00:00.000Z    Belgium
+3	Europe	Cabbages    17.7886406390932	2024-07-08T01:00:00.000Z    Denmark
+4	Europe	Carrots	    35.6959979886641	2024-07-29T01:00:00.000Z    Denmark
+5	Europe	Potatoes    36.9289295396171	2024-07-21T01:00:00.000Z    Denmark
+6	Europe	Cabbages    23.5638476476477	2024-07-13T01:00:00.000Z    Greece
+7	Europe	Carrots	    55.1118614656788	2024-07-05T01:00:00.000Z    Greece
+8	Europe	Potatoes    55.6819793654006	2024-07-09T01:00:00.000Z    Greece
 ```
 
 - использование оконной агрегации - среднее за каждую неделю<br>
