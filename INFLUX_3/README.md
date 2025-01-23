@@ -300,3 +300,27 @@ Europe	Cabbages	37.8995052634044	2024-07-15T00:00:00.000Z	Belgium
 Europe	Cabbages	37.151188312565125	2024-07-22T00:00:00.000Z	Belgium
 Europe	Cabbages	29.61898520136605	2024-07-29T00:00:00.000Z	Belgium
 ```
+
+- плавающее среднее каждую неделю за 3 прошедших недели
+```
+from(bucket: "test_0301")
+  |> range(start: 2024-06-01T00:00:00Z, stop: 2024-08-01T00:00:00Z)
+  |> filter(fn: (r) => r["_measurement"] == "Europe")
+  |> filter(fn: (r) => r["country"] == "Belgium")  
+  |> filter(fn: (r) => r["_field"] == "Cabbages")  
+  |> timedMovingAverage(every: 1w, period: 3w)
+```
+
+```
+Europe	Cabbages	38.369264293275755	2024-06-06T00:00:00.000Z	Belgium
+Europe	Cabbages	40.472388150774435	2024-06-13T00:00:00.000Z	Belgium
+Europe	Cabbages	42.04313469211353	2024-06-20T00:00:00.000Z	Belgium
+Europe	Cabbages	42.22610745656265	2024-06-27T00:00:00.000Z	Belgium
+Europe	Cabbages	39.56204488470559	2024-07-04T00:00:00.000Z	Belgium
+Europe	Cabbages	36.07315537015906	2024-07-11T00:00:00.000Z	Belgium
+Europe	Cabbages	35.997481253115026	2024-07-18T00:00:00.000Z	Belgium
+Europe	Cabbages	35.70519814832332	2024-07-25T00:00:00.000Z	Belgium
+Europe	Cabbages	33.72176203772595	2024-08-01T00:00:00.000Z	Belgium
+Europe	Cabbages	30.712224310438028	2024-08-01T00:00:00.000Z	Belgium
+Europe	Cabbages	28.31886617326317	2024-08-01T00:00:00.000Z	Belgium
+```
