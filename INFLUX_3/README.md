@@ -278,3 +278,26 @@ from(bucket: "test_0301")
 7	Europe	Carrots	    55.1118614656788	2024-07-05T01:00:00.000Z	Greece
 8	Europe	Potatoes	55.6819793654006	2024-07-09T01:00:00.000Z	Greece
 ```
+
+- использование оконной агрегации - среднее за каждую неделю<br>
+- есть маленькая корректировка на понедельник (по умолчанию - начало недели - четверг)
+```
+from(bucket: "test_0301")
+  |> range(start: 2024-06-03T00:00:00Z, stop: 2024-07-29T00:00:00Z)
+  |> filter(fn: (r) => r["_measurement"] == "Europe")
+  |> filter(fn: (r) => r["country"] == "Belgium")  
+  |> filter(fn: (r) => r["_field"] == "Cabbages")  
+  |> aggregateWindow(every: 1w, offset: -3d, fn: mean)
+```  
+
+```
+Europe	Cabbages	38.9287678846002	2024-06-06T00:00:00.000Z	Belgium
+Europe	Cabbages	41.9746194775592	2024-06-13T00:00:00.000Z	Belgium
+Europe	Cabbages	44.73584304869486	2024-06-20T00:00:00.000Z	Belgium
+Europe	Cabbages	39.96785984343388	2024-06-27T00:00:00.000Z	Belgium
+Europe	Cabbages	33.982431761988025	2024-07-04T00:00:00.000Z	Belgium
+Europe	Cabbages	34.26917450505526	2024-07-11T00:00:00.000Z	Belgium
+Europe	Cabbages	39.7408374923018	2024-07-18T00:00:00.000Z	Belgium
+Europe	Cabbages	33.105582447612896	2024-07-25T00:00:00.000Z	Belgium
+Europe	Cabbages	28.8665270721475	2024-07-29T00:00:00.000Z	Belgium
+```
