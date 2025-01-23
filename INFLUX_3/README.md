@@ -135,7 +135,7 @@ with open('fruits_dataset.csv','r') as file01:
 
 // получили неплохие данные для запросов и анализа 
 
-![Выбрка](./Images/test0301.png)
+![Выбрка](./Images/test0302.png)
 
 
 ####  Пробуем запросы
@@ -325,3 +325,6 @@ Europe	Cabbages	30.712224310438028	2024-08-01T00:00:00.000Z	Belgium
 Europe	Cabbages	28.31886617326317	2024-08-01T00:00:00.000Z	Belgium
 ```
 
+###  И -  привет  DBeaver  !!!
+ 
+![Как это выглядит](./Images/test0303.png)
