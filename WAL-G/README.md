@@ -447,6 +447,16 @@ Current cluster timeline: 1
   // ( это грубый способ восстановления, когда нет выхода )<br>
 
 
+- Внимательно смотрим логи или первый вход в psql, если на хостах разные Linux
+```
+WARNING:  database "postgres" has a collation version mismatch
+ПОДРОБНОСТИ:  The database was created using collation version 153.120.42, but the operating system provides version 153.121.44.8.
+ПОДСКАЗКА:  Rebuild all objects in this database that use the default collation and run ALTER DATABASE postgres REFRESH COLLATION VERSION, or build PostgreSQL with the right library version.
+```
+
+- подобное описано в
+- [Восстановление на другом хосте](https://github.com/Zikon328/otus-PostgresAdvanced-2024-10-DmitriyM/tree/main/HW06#%D0%B2%D0%BE%D1%81%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5-%D0%BA%D0%BB%D0%B0%D1%81%D1%82%D0%B5%D1%80%D0%B0-%D0%BD%D0%B0-%D0%B4%D1%80%D1%83%D0%B3%D0%BE%D0%B9-%D0%B2%D0%BC)
+
 
 
 
